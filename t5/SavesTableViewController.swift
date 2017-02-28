@@ -150,7 +150,7 @@ class SavesTableViewController: UITableViewController {
         switch(segue.identifier ?? "") {
             
         case "ShowSaveDetail":
-            guard let roundViewController = segue.destination as? RoundTableViewController else {
+            guard let roundViewController = segue.destination as? LoadTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             print("SELECTED CELL")

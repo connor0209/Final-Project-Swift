@@ -80,12 +80,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             i = i! + g!
             if(e!*2 + f!*3 + g!*4 != a!){
                 checkValidGroups()
+                return
             }
         }
         else{
             h = Int(b)!
             if(a!%h != 0){
                 checkValidGroups()
+                return
             }
             i = a!/h
         }
@@ -93,10 +95,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let d:Int? = Int(rounds.text!)
         
         if(a! < 1){
-            let refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
+            let refreshAlert = UIAlertController(title: "Error", message: "Enter a valid number of players", preferredStyle: UIAlertControllerStyle.alert)
             
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                print("Handle Ok logic here")
             }))
             present(refreshAlert, animated: true, completion: nil)
             //ViewController()
@@ -119,7 +120,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 if(four != 0){
                     temp += ", " +  names[t[j].getPlayerFour().getPlayerNo() - 1]
                 }
-                temp += "\n\n---------------\n\n"
+                temp += "\n\n"
 
             }
             results.append(temp);
@@ -251,7 +252,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let refreshAlert = UIAlertController(title: "Error", message: "Invalid combination of players and group size(s)", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
         }))
         present(refreshAlert, animated: true, completion: nil)
 

@@ -37,6 +37,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var results = [String]();
     var names = [String]();
     var numberPlayers = 0
+    var statsTable = [[String]]()
     
     @IBAction func roundStepper(_ sender: UIStepper) {
          rounds.text = Int(sender.value).description
@@ -100,12 +101,29 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             }))
             present(refreshAlert, animated: true, completion: nil)
-            //ViewController()
+            
         }
         
         var run = Search();
         var groups = run.search(numPlayer: a!, rounds: d!, groupSize: h, numGroups: i!, mTwo:e!, mThree:f!, mFour:g!);
         print(names)
+       var finalPlayers = run.getFinalPlayers()
+        for i in 0..<finalPlayers.count{
+            var temp2 = [String]()
+            for j in 0..<finalPlayers.count{
+                let a = finalPlayers[i].getPlayedPlayers()
+                
+                var temp = 0
+                for k in 0..<a.count  {
+                    if(a[k] == String(j+1)){
+                        temp += 1
+                    }
+                }
+                temp2.append(String(temp))
+            }
+            statsTable.append(temp2)
+        }
+        print(statsTable)
         for i in 0..<groups.count{
             var temp:String = ""
             var t = groups[i]
@@ -175,7 +193,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             for i in 0..<results.count {
                 roundViewController.round.append(results[i])
             }
-            
+            roundViewController.statsArray = statsTable
+            roundViewController.pNames = names
         case "nameDetail":
             guard let nameViewController = segue.destination as? NameTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")

@@ -8,14 +8,30 @@
 
 import UIKit
 
-class StatsViewController: UIViewController {
+class StatsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var statsArray = [[String]]()
+    var tableArray = [[String]]()
     var names = [String]()
+    var data = [["first", "1", "2"], ["second", "3", "4"], ["thired", "3", "4"]]
+    let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
 
+
+    @IBOutlet weak var statsTable: UICollectionView!
     @IBOutlet weak var figures: UILabel!
+    
     override func viewDidLoad() {
-        fillTable()
+        var newNames = names
+        newNames.insert("", at: 0)
+        tableArray.append(newNames)
+        for i in 0..<statsArray.count{
+            var tempArray = [String]()
+            tempArray.append(names[i])
+            for j in 0..<statsArray[i].count{
+                tempArray.append(statsArray[i][j])
+            }
+            tableArray.append(tempArray)
+        }
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -25,35 +41,37 @@ class StatsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func fillTable(){
-        var columnText = ""
-        for i in 0..<names.count{
-            columnText.append(names[i])
-            columnText.append("\t")
-        }
 
-        var rowText = ""
-        for i in 0..<names.count{
-            rowText.append(names[i])
-            rowText.append("\n\n")
-        }
-   
-        
-        var finalFigures = ""
-        for i in 0..<statsArray.count{
-            var temp = statsArray[i]
-            var temp2 = ""
-            for j in 0..<temp.count{
-                temp2.append(temp[j] + "\t")
-            }
-            finalFigures.append(temp2 + "\n")
-        }
-        print(finalFigures)
-        print(columnText)
-        var finalFiguresWithColumn = columnText + "\n" + finalFigures
-         figures.text = finalFiguresWithColumn
+    // MARK: - UICollectionViewDataSource protocol
+    
+    // tell the collection view how many cells to make
+    func numberOfSections(in collectionView: UICollectionView) -> Int{
+        return tableArray.count
     }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         return tableArray[section].count
+    }
+    // make a cell for each cell index path
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! StatsCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+       cell.label.text = tableArray[indexPath.section][indexPath.item]
+        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate protocol
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
+    }
+}
     /*
     // MARK: - Navigation
 
@@ -64,4 +82,4 @@ class StatsViewController: UIViewController {
     }
     */
 
-}
+

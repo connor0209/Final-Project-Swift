@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843222021E6C728100CC7698 /* StatsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843222011E6C728100CC7698 /* StatsCollectionViewController.swift */; };
+		843222041E6C728F00CC7698 /* StatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843222031E6C728F00CC7698 /* StatsCollectionViewCell.swift */; };
 		8440D37E1E57CE1500C89999 /* GroupDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440D37D1E57CE1500C89999 /* GroupDisplayViewController.swift */; };
 		844618E51E5BE86C00715FCC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844618E41E5BE86C00715FCC /* HomeScreenViewController.swift */; };
 		844618E71E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 844618E61E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		843222011E6C728100CC7698 /* StatsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsCollectionViewController.swift; sourceTree = "<group>"; };
+		843222031E6C728F00CC7698 /* StatsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8440D37D1E57CE1500C89999 /* GroupDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDisplayViewController.swift; sourceTree = "<group>"; };
 		844618E41E5BE86C00715FCC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		844618E61E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "golf-high-quality-resolution-wallpapers-750x1334.jpg"; path = "../../../Downloads/golf-high-quality-resolution-wallpapers-750x1334.jpg"; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 				84942F741E53464A004CC1C6 /* Search.swift */,
 				84942F7A1E534679004CC1C6 /* LaunchScreen.storyboard */,
 				84942F771E534659004CC1C6 /* Main.storyboard */,
+				843222011E6C728100CC7698 /* StatsCollectionViewController.swift */,
+				843222031E6C728F00CC7698 /* StatsCollectionViewCell.swift */,
 				845CD0A81E65AB9900A77255 /* LoadTableViewCell.swift */,
 				845CD0A61E65A81700A77255 /* LoadTableViewController.swift */,
 				84EEB2341E5FF5CA00F10AE3 /* SavesTableViewController.swift */,
@@ -306,6 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843222041E6C728F00CC7698 /* StatsCollectionViewCell.swift in Sources */,
+				843222021E6C728100CC7698 /* StatsCollectionViewController.swift in Sources */,
 				84942F751E53464A004CC1C6 /* Search.swift in Sources */,
 				84942F491E534633004CC1C6 /* ViewController.swift in Sources */,
 				844724171E6BAA0F00F6CC33 /* StatsViewController.swift in Sources */,

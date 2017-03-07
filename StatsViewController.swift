@@ -52,6 +52,15 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          return tableArray[section].count
     }
+    
+     func collectionView(_ collectionView: UICollectionView,
+                                 layout collectionViewLayout: UICollectionViewLayout,
+                                 sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+        let bounds = UIScreen.main.bounds
+        var width = bounds.size.width
+        var cellWidth = width/(CGFloat(names.count+1))
+        return CGSize(width: cellWidth, height: cellWidth);
+    }
     // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -59,11 +68,13 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! StatsCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        
        cell.label.text = tableArray[indexPath.section][indexPath.item]
-        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        cell.backgroundColor = UIColor.gray // make cell more visible in our example project
         
         return cell
     }
+
     
     // MARK: - UICollectionViewDelegate protocol
     

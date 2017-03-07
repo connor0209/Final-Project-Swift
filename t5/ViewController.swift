@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate
 {
+    @IBOutlet weak var prioSwitch: UISwitch!
 
     @IBOutlet weak var stepPLS: UIStepper!
     @IBOutlet weak var testPLS: UILabel!
@@ -38,6 +39,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var names = [String]();
     var numberPlayers = 0
     var statsTable = [[String]]()
+    var priority = true
     
     @IBAction func roundStepper(_ sender: UIStepper) {
          rounds.text = Int(sender.value).description
@@ -71,6 +73,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         var g:Int? = 0
         var h:Int = 0
         var i:Int?
+        
+        if(b == ""){
+            checkValidGroupSize()
+            return
+        }
 
         if(b == "Mixed"){
             e = Int(sizeTwo.text!)
@@ -105,7 +112,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         
         var run = Search();
-        var groups = run.search(numPlayer: a!, rounds: d!, groupSize: h, numGroups: i!, mTwo:e!, mThree:f!, mFour:g!);
+        var groups = run.search(numPlayer: a!, rounds: d!, groupSize: h, numGroups: i!, mTwo:e!, mThree:f!, mFour:g!,prio:priority );
         print(names)
        var finalPlayers = run.getFinalPlayers()
         for i in 0..<finalPlayers.count{
@@ -276,5 +283,23 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     }
     
+    func checkValidGroupSize(){
+        let refreshAlert = UIAlertController(title: "Error", message: "Please select a valid group size", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        }))
+        present(refreshAlert, animated: true, completion: nil)
+        
+    }
+
+    
+    @IBAction func prioritySwitch(_ sender: Any) {
+        if(prioSwitch.isOn){
+            priority = true
+        }
+        else{
+            priority = false
+        }
+    }
 }
 

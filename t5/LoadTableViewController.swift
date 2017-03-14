@@ -13,6 +13,7 @@ class LoadTableViewController: UITableViewController {
     //MARK: Properties
     
     var round = [String]()
+    var stats = [[String]]()
     var cellImages = [UIImage]()
     var pNames = [String]() // DOES NOTHING ATM
     var saveName:String?
@@ -29,7 +30,7 @@ class LoadTableViewController: UITableViewController {
             UIImage(named: "golf7")!,
             UIImage(named: "golf8")!
         ]
-
+        print(stats)
     }
     
     
@@ -132,7 +133,15 @@ class LoadTableViewController: UITableViewController {
             
             let selectedRound = round[indexPath.row]
             roundDetailViewController.details = selectedRound
-      
+            
+        case "statsSeg":
+            guard let statsViewController = segue.destination as? StatsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            statsViewController.statsArray = stats
+            statsViewController.names = pNames
+            //statsViewController.names = pNames
+
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }

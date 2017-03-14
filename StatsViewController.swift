@@ -38,6 +38,11 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
 
         // Do any additional setup after loading the view.
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let rows = tableArray.count + 3
+        scrollV.contentSize = CGSize(width: 375, height: rows*50)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,14 +64,13 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
          return tableArray[section].count
     }
     
-     /*func collectionView(_ collectionView: UICollectionView,
+     func collectionView(_ collectionView: UICollectionView,
                                  layout collectionViewLayout: UICollectionViewLayout,
                                  sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-        let bounds = UIScreen.main.bounds
-        var width = bounds.size.width
-        var cellWidth = width/(CGFloat(names.count+1))
-        return CGSize(width: cellWidth, height: cellWidth);
-    }*/
+        
+        return CGSize(width: 50, height: 50);
+    }
+    
     // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         

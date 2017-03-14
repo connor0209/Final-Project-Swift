@@ -12,7 +12,11 @@ class SavesTableViewController: UITableViewController {
     
     var saveFiles = Dictionary<String,[String]>()
     var fileNames = [String]()
+    var saveStats = Dictionary<String,[[String]]>()
     var newFile = [String]()
+    var newStats = [[String]]()
+    var newNames = [String]()
+    var saveNames = Dictionary<String,[String]>()
     var isSave:Int = 0
     var saveName:String?
     var selectedCell:String = "POP"
@@ -49,6 +53,8 @@ class SavesTableViewController: UITableViewController {
     
     func addFile(){
         saveFiles[saveName!] = newFile
+        saveStats[saveName!] = newStats
+        saveNames[saveName!] = newNames
         fileNames.append(saveName!)
     }
     
@@ -62,6 +68,14 @@ class SavesTableViewController: UITableViewController {
         let array2 = saveFiles
         let defaults2 = UserDefaults.standard
         defaults2.set(array2, forKey: "SavedFileArray")
+        let array3 = saveStats
+        let defaults3 = UserDefaults.standard
+        defaults3.set(array3, forKey: "SavedStatsArray")
+        let array4 = saveNames
+        let defaults4 = UserDefaults.standard
+        defaults4.set(array4, forKey: "SavedNamesArray")
+
+
         isSave = 0;
         self.tableView.reloadData()
  
@@ -76,6 +90,13 @@ class SavesTableViewController: UITableViewController {
         let defaults2 = UserDefaults.standard
         let array2 = defaults2.dictionary(forKey: "SavedFileArray")  as? Dictionary<String,[String]> ?? Dictionary<String,[String]>()
         saveFiles = array2
+        let defaults3 = UserDefaults.standard
+        let array3 = defaults3.dictionary(forKey: "SavedStatsArray")  as? Dictionary<String,[[String]]> ?? Dictionary<String,[[String]]>()
+        saveStats = array3
+        let defaults4 = UserDefaults.standard
+        let array4 = defaults4.dictionary(forKey: "SavedNamesArray")  as? Dictionary<String,[String]> ?? Dictionary<String,[String]>()
+        saveNames = array4
+
 
 
     }
@@ -112,7 +133,7 @@ class SavesTableViewController: UITableViewController {
         return cell
     }
 
-    override  func tableView(_ tableView: UITableView, didSelectRowAt
+    /*override  func tableView(_ tableView: UITableView, didSelectRowAt
         indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         NSLog("You selected cell number: \(indexPath.row)!")
@@ -121,13 +142,15 @@ class SavesTableViewController: UITableViewController {
         
         // here is the text of the label
         selectedCell = cell.saveLabel.text!
-    }
+        print(selectedCell)
+    }*/
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             let temp = fileNames[indexPath.row]
             saveFiles.removeValue(forKey: temp)
+            saveStats.removeValue(forKey: temp)
             fileNames.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             saveFile()
@@ -150,10 +173,21 @@ class SavesTableViewController: UITableViewController {
             guard let roundViewController = segue.destination as? LoadTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
+            if let cell = sender as? SaveFileTableViewCell, let indexPath = tableView.indexPath(for: cell) {
+                selectedCell = cell.saveLabel.text!
+                
+            }
+
             var results = saveFiles[selectedCell]
             for i in 0..<results!.count {
                 roundViewController.round.append(results![i])
            }
+            print("here")
+            //print()
+            //print(saveStats[selectedCell]!)
+
+            roundViewController.stats = saveStats[selectedCell]!
+            roundViewController.pNames = saveNames[selectedCell]!
         case "Home":
             guard let homeViewController = segue.destination as? HomeScreenViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
@@ -162,5 +196,9 @@ class SavesTableViewController: UITableViewController {
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
+    }
+    
+    func test(){
+        print("we are here")
     }
 }

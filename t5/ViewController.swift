@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate
 {
     @IBOutlet weak var prioSwitch: UISwitch!
-
     @IBOutlet weak var stepPLS: UIStepper!
     @IBOutlet weak var testPLS: UILabel!
     @IBOutlet weak var rounds: UILabel!
@@ -65,6 +64,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
 
     @IBAction func Test(_ sender: Any) {
+        statsTable = [[String]]()
         results = [String]()
         let a:Int? = Int(testPLS.text!)
         let b:String = groupSize.text!
@@ -135,15 +135,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             var temp:String = ""
             var t = groups[i]
             for j in 0..<t.count{
-                temp += names[t[j].getPlayerOne().getPlayerNo() - 1] + ", "
-                temp += names[t[j].getPlayerTwo().getPlayerNo() - 1]
+                temp += "Group " + String(j+1) + ":" + "\n"
+                temp += "\t" + names[t[j].getPlayerOne().getPlayerNo() - 1] + "\n "
+                temp += "\t" + names[t[j].getPlayerTwo().getPlayerNo() - 1]
                 let three = t[j].getPlayerThree().getPlayerNo()
                 if(three != 0){
-                   temp += ", " + names[t[j].getPlayerThree().getPlayerNo() - 1]
+                   temp += "\n " + "\t" + names[t[j].getPlayerThree().getPlayerNo() - 1]
                 }
                 let four = t[j].getPlayerFour().getPlayerNo()
                 if(four != 0){
-                    temp += ", " +  names[t[j].getPlayerFour().getPlayerNo() - 1]
+                    temp += "\n " + "\t" +   names[t[j].getPlayerFour().getPlayerNo() - 1]
                 }
                 temp += "\n\n"
 
@@ -222,6 +223,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return 1
     }
     
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let string = list2[row]
+        let attributedString = NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName : UIColor.white])
+        return attributedString
+    }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return list2.count
     }
@@ -241,6 +248,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         self.groupDrop.isHidden = true
     }
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == groupSize {

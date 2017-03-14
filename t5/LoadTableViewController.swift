@@ -13,11 +13,23 @@ class LoadTableViewController: UITableViewController {
     //MARK: Properties
     
     var round = [String]()
+    var cellImages = [UIImage]()
     var pNames = [String]() // DOES NOTHING ATM
     var saveName:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cellImages = [
+            UIImage(named: "golf")!,
+            UIImage(named: "golf2")!,
+            UIImage(named: "golf3")!,
+            UIImage(named: "golf4")!,
+            UIImage(named: "golf5")!,
+            UIImage(named: "golf6")!,
+            UIImage(named: "golf7")!,
+            UIImage(named: "golf8")!
+        ]
+
     }
     
     
@@ -48,6 +60,15 @@ class LoadTableViewController: UITableViewController {
         
         
         cell.nameLabel.text = "Round " + String(indexPath.row + 1)
+        if(indexPath.row > 7){
+            let i = indexPath.row % 7
+            cell.cellImage.image = cellImages[i-1]
+            
+        }
+        else{
+            cell.cellImage.image = cellImages[indexPath.row]
+        }
+
         
         return cell
     }

@@ -13,14 +13,16 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
     var statsArray = [[String]]()
     var tableArray = [[String]]()
     var names = [String]()
-    var data = [["first", "1", "2"], ["second", "3", "4"], ["thired", "3", "4"]]
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
 
 
     @IBOutlet weak var statsTable: UICollectionView!
     @IBOutlet weak var figures: UILabel!
+
+    @IBOutlet weak var scrollV: UIScrollView!
     
     override func viewDidLoad() {
+        self.scrollV.contentSize = self.statsTable.frame.size;
         var newNames = names
         newNames.insert("", at: 0)
         tableArray.append(newNames)
@@ -46,21 +48,25 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     // tell the collection view how many cells to make
     func numberOfSections(in collectionView: UICollectionView) -> Int{
+        print("this")
+        print(tableArray.count)
         return tableArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("that")
+        print(tableArray[section].count)
          return tableArray[section].count
     }
     
-     func collectionView(_ collectionView: UICollectionView,
+     /*func collectionView(_ collectionView: UICollectionView,
                                  layout collectionViewLayout: UICollectionViewLayout,
                                  sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         let bounds = UIScreen.main.bounds
         var width = bounds.size.width
         var cellWidth = width/(CGFloat(names.count+1))
         return CGSize(width: cellWidth, height: cellWidth);
-    }
+    }*/
     // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -70,18 +76,12 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         
        cell.label.text = tableArray[indexPath.section][indexPath.item]
-        cell.backgroundColor = UIColor.gray // make cell more visible in our example project
+
         
         return cell
     }
 
     
-    // MARK: - UICollectionViewDelegate protocol
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
-    }
 }
     /*
     // MARK: - Navigation

@@ -144,18 +144,12 @@ class SavesTableViewController: UITableViewController {
     */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         super.prepare(for: segue, sender: sender)
-        
         switch(segue.identifier ?? "") {
-            
         case "ShowSaveDetail":
             guard let roundViewController = segue.destination as? LoadTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            print("SELECTED CELL")
-            print(selectedCell)
-            print(fileNames)
             var results = saveFiles[selectedCell]
             for i in 0..<results!.count {
                 roundViewController.round.append(results![i])
@@ -163,11 +157,10 @@ class SavesTableViewController: UITableViewController {
         case "Home":
             guard let homeViewController = segue.destination as? HomeScreenViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
-            }
+           }
     
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
-
 }

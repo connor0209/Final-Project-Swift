@@ -10,16 +10,16 @@ import UIKit
 
 class GroupDisplayViewController: UIViewController {
 
-    @IBOutlet weak var groups: UILabel!
+
+    @IBOutlet weak var groups: UITextView!
     var details:String = ""
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groups.numberOfLines = 0;
+        groups.isEditable = false
         groups.text = details;
-
         // Do any additional setup after loading the view.
     }
 

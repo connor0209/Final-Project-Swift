@@ -27,7 +27,8 @@ class SavesTableViewController: UITableViewController {
         self.loadFile()
 
         if(isSave == 1){
-            let alert = UIAlertController(title: "Save", message: "Enter a Name", preferredStyle: .alert)
+            saveFileName()
+            /*let alert = UIAlertController(title: "Save", message: "Enter a Name", preferredStyle: .alert)
         
             alert.addTextField { (textField) in
                 textField.text = ""
@@ -40,7 +41,7 @@ class SavesTableViewController: UITableViewController {
             
             }))
             self.present(alert, animated: true, completion: nil)
-            
+          */
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -48,6 +49,25 @@ class SavesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    func saveFileName(){
+        let alert = UIAlertController(title: "Save", message: "Enter a Valid Name", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0]
+            if(textField?.text == ""){
+                self.saveFileName()
+                return
+            }
+            self.saveName = textField?.text
+            self.addFile()
+            self.saveFile()
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func addFile(){

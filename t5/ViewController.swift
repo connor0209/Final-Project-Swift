@@ -111,8 +111,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         let d:Int? = Int(rounds.text!)
         
-        if(a! < 1){
-            let refreshAlert = UIAlertController(title: "Error", message: "Enter a valid number of players", preferredStyle: UIAlertControllerStyle.alert)
+        if(a! < 4){
+            let refreshAlert = UIAlertController(title: "Error", message: "Enter a valid number of players to create at least two groups", preferredStyle: UIAlertControllerStyle.alert)
             
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                

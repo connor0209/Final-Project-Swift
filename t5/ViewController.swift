@@ -31,7 +31,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var labelThree: UILabel!
     @IBOutlet weak var labelFour: UILabel!
     @IBOutlet weak var namePlayers: UIButton!
-
+    
     var list2 = ["2", "3", "4", "Mixed"];
 
     var results = [String]();
@@ -39,6 +39,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var numberPlayers = 0
     var statsTable = [[String]]()
     var priority = true
+    var warning = false
+    
     
     @IBAction func roundStepper(_ sender: UIStepper) {
          rounds.text = Int(sender.value).description
@@ -49,6 +51,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   
     @IBAction func threeStepper(_ sender: UIStepper) {
         sizeThree.text = Int(sender.value).description
+    }
+    @IBAction func prioInfo(_ sender: Any) {
+        let refreshAlert = UIAlertController(title: "Help", message: "Having this option selected prioritises groupings where every player will try to be grouped with every other player at least once. Having this option turned off promotes a more balanced solution in some instances. Please note, this may not always affect the outcome. ", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        }))
+        present(refreshAlert, animated: true, completion: nil)
+
     }
     @IBAction func fourStepper(_ sender: UIStepper) {
         sizeFour.text = Int(sender.value).description
@@ -73,7 +83,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         var g:Int? = 0
         var h:Int = 0
         var i:Int?
-        
         if(b == ""){
             checkValidGroupSize()
             return
@@ -106,10 +115,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let refreshAlert = UIAlertController(title: "Error", message: "Enter a valid number of players", preferredStyle: UIAlertControllerStyle.alert)
             
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+               
             }))
             present(refreshAlert, animated: true, completion: nil)
             
         }
+       
+        /*if(a! > 15 || d! > 6 && warning == false){
+            let refreshAlert = UIAlertController(title: "Warning!", message: "Larger amounts of players or rounds will increse the time taken to find a solution. ", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                
+            }))
+            present(refreshAlert, animated: true, completion: nil)
+        }*/
         
         var run = Search();
         var groups = run.search(numPlayer: a!, rounds: d!, groupSize: h, numGroups: i!, mTwo:e!, mThree:f!, mFour:g!,prio:priority );
@@ -151,7 +170,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             results.append(temp);
         }
-      
+
     }
     
     
@@ -161,7 +180,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationItem.hidesBackButton = true;
         groupDrop.delegate = self
         groupSize.delegate = self
         groupDrop.isHidden = true
@@ -197,7 +215,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             guard let roundViewController = segue.destination as? RoundTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            print(results)
             for i in 0..<results.count {
                 roundViewController.round.append(results[i])
             }

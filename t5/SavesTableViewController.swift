@@ -25,8 +25,7 @@ class SavesTableViewController: UITableViewController {
         
         super.viewDidLoad()
         self.loadFile()
-        print("CHECKING SAVE FILES")
-        print(saveFiles)
+
         if(isSave == 1){
             let alert = UIAlertController(title: "Save", message: "Enter a Name", preferredStyle: .alert)
         
@@ -128,6 +127,12 @@ class SavesTableViewController: UITableViewController {
         
         
         cell.saveLabel.text = fileNames[indexPath.row]
+        if(indexPath.row%2 == 1){
+            cell.backgroundColor = UIColor(red:0.65, green:0.83, blue:0.62, alpha:1.0)
+        }
+        else{
+          cell.backgroundColor = UIColor(red:0.61, green:0.70, blue:0.50, alpha:1.0)
+        }
         selectedCell = fileNames[indexPath.row]
         
         return cell
@@ -182,10 +187,6 @@ class SavesTableViewController: UITableViewController {
             for i in 0..<results!.count {
                 roundViewController.round.append(results![i])
            }
-            print("here")
-            //print()
-            //print(saveStats[selectedCell]!)
-
             roundViewController.stats = saveStats[selectedCell]!
             roundViewController.pNames = saveNames[selectedCell]!
         case "Home":

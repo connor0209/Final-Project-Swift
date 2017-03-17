@@ -15,9 +15,9 @@
 		8432644F1E7740BC00F890DB /* golf_course_2-wallpaper-1920x1080.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8432644E1E7740BC00F890DB /* golf_course_2-wallpaper-1920x1080.jpg */; };
 		843264551E775BC900F890DB /* golf_course_landscape_2-wallpaper-2048x1152.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 843264541E775BC800F890DB /* golf_course_landscape_2-wallpaper-2048x1152.jpg */; };
 		843264571E775E5A00F890DB /* golf_club-wallpaper-2048x1152.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 843264561E775E5A00F890DB /* golf_club-wallpaper-2048x1152.jpg */; };
+		8432FB301E782E1100846DF2 /* golf-ball-wallpapers-desktop-background-750x1334.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8432FB2F1E782E1100846DF2 /* golf-ball-wallpapers-desktop-background-750x1334.jpg */; };
 		8440D37E1E57CE1500C89999 /* GroupDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440D37D1E57CE1500C89999 /* GroupDisplayViewController.swift */; };
 		844618E51E5BE86C00715FCC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844618E41E5BE86C00715FCC /* HomeScreenViewController.swift */; };
-		844618E71E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 844618E61E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg */; };
 		844724171E6BAA0F00F6CC33 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844724161E6BAA0F00F6CC33 /* StatsViewController.swift */; };
 		844EC26F1E5A196800A69B24 /* NameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EC26E1E5A196800A69B24 /* NameTableViewController.swift */; };
 		844EC2711E5A199D00A69B24 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EC2701E5A199D00A69B24 /* NameTableViewCell.swift */; };
@@ -65,9 +65,9 @@
 		8432644E1E7740BC00F890DB /* golf_course_2-wallpaper-1920x1080.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "golf_course_2-wallpaper-1920x1080.jpg"; path = "../../../Downloads/golf_course_2-wallpaper-1920x1080.jpg"; sourceTree = "<group>"; };
 		843264541E775BC800F890DB /* golf_course_landscape_2-wallpaper-2048x1152.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "golf_course_landscape_2-wallpaper-2048x1152.jpg"; path = "../../../Downloads/golf_course_landscape_2-wallpaper-2048x1152.jpg"; sourceTree = "<group>"; };
 		843264561E775E5A00F890DB /* golf_club-wallpaper-2048x1152.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "golf_club-wallpaper-2048x1152.jpg"; path = "../../../Downloads/golf_club-wallpaper-2048x1152.jpg"; sourceTree = "<group>"; };
+		8432FB2F1E782E1100846DF2 /* golf-ball-wallpapers-desktop-background-750x1334.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "golf-ball-wallpapers-desktop-background-750x1334.jpg"; path = "../../../Downloads/golf-ball-wallpapers-desktop-background-750x1334.jpg"; sourceTree = "<group>"; };
 		8440D37D1E57CE1500C89999 /* GroupDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDisplayViewController.swift; sourceTree = "<group>"; };
 		844618E41E5BE86C00715FCC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
-		844618E61E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "golf-high-quality-resolution-wallpapers-750x1334.jpg"; path = "../../../Downloads/golf-high-quality-resolution-wallpapers-750x1334.jpg"; sourceTree = "<group>"; };
 		844724161E6BAA0F00F6CC33 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatsViewController.swift; path = ../StatsViewController.swift; sourceTree = "<group>"; };
 		844EC26E1E5A196800A69B24 /* NameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTableViewController.swift; sourceTree = "<group>"; };
 		844EC2701E5A199D00A69B24 /* NameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +143,7 @@
 		84942F451E534633004CC1C6 /* t5 */ = {
 			isa = PBXGroup;
 			children = (
+				8432FB2F1E782E1100846DF2 /* golf-ball-wallpapers-desktop-background-750x1334.jpg */,
 				843264561E775E5A00F890DB /* golf_club-wallpaper-2048x1152.jpg */,
 				8432644E1E7740BC00F890DB /* golf_course_2-wallpaper-1920x1080.jpg */,
 				843264541E775BC800F890DB /* golf_course_landscape_2-wallpaper-2048x1152.jpg */,
@@ -150,7 +151,6 @@
 				8432644A1E772CF200F890DB /* golf_course-wallpaper-2560x1440.jpg */,
 				843264481E772B2C00F890DB /* golf_course-wallpaper-1600x900.jpg */,
 				844724161E6BAA0F00F6CC33 /* StatsViewController.swift */,
-				844618E61E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg */,
 				844ED28B1E56638A0043E1C1 /* RoundTableViewCell.swift */,
 				844ED2891E5663790043E1C1 /* RoundTableViewController.swift */,
 				84942F7E1E534685004CC1C6 /* Player.swift */,
@@ -305,8 +305,8 @@
 				84942F7B1E534679004CC1C6 /* LaunchScreen.storyboard in Resources */,
 				84942F781E534659004CC1C6 /* Main.storyboard in Resources */,
 				84942F4E1E534633004CC1C6 /* Assets.xcassets in Resources */,
-				844618E71E5BE8C000715FCC /* golf-high-quality-resolution-wallpapers-750x1334.jpg in Resources */,
 				843264551E775BC900F890DB /* golf_course_landscape_2-wallpaper-2048x1152.jpg in Resources */,
+				8432FB301E782E1100846DF2 /* golf-ball-wallpapers-desktop-background-750x1334.jpg in Resources */,
 				8432644F1E7740BC00F890DB /* golf_course_2-wallpaper-1920x1080.jpg in Resources */,
 				8432644B1E772CF200F890DB /* golf_course-wallpaper-2560x1440.jpg in Resources */,
 				8432644D1E7740B700F890DB /* golf_course_landscape-wallpaper-1920x1080.jpg in Resources */,

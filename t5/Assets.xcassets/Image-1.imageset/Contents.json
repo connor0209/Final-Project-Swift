@@ -2,14 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "golf-high-quality-resolution-wallpapers-750x1334-1.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "golf-high-quality-resolution-wallpapers-750x1334.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "golf-high-quality-resolution-wallpapers-750x1334-2.jpg",
       "scale" : "3x"
     }
   ],

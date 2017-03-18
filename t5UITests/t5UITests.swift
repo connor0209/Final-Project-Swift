@@ -28,9 +28,93 @@ class t5UITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCreatingGroupInGUI() {
+        let app = XCUIApplication()
+        app.buttons["Get Started"].tap()
+        let element = app.otherElements.containing(.navigationBar, identifier:"t5.View").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        let incrementButton = element.children(matching: .stepper).element(boundBy: 0).buttons["Increment"]
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        element.children(matching: .textField).element.tap()
+        app.pickerWheels["2"].press(forDuration: 1.9);
+        
+        let incrementButton2 = element.children(matching: .stepper).element(boundBy: 1).buttons["Increment"]
+        incrementButton2.tap()
+        incrementButton2.tap()
+        app.buttons["GO"].tap()
     }
     
+    func testSavingAFile(){
+        
+        let app = XCUIApplication()
+        let element = app.otherElements.containing(.navigationBar, identifier:"t5.View").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        let incrementButton = element.children(matching: .stepper).element(boundBy: 0).buttons["Increment"]
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        element.children(matching: .textField).element.tap()
+        app.pickerWheels["2"].press(forDuration: 1.5);
+        element.children(matching: .stepper).element(boundBy: 1).buttons["Increment"].tap()
+        app.buttons["GO"].tap()
+        app.navigationBars["Rounds"].buttons["Save"].tap()
+        app.alerts["Save"].collectionViews.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).children(matching: .textField).element.typeText("new")
+        app.typeText("Test")
+        app.otherElements.containing(.navigationBar, identifier:"t5.SavesTableView").children(matching: .other).element.children(matching: .other).element.children(matching: .table).element.tap()
+        
+    }
+    
+    func testSaveFileWithNoName(){
+        
+        let app = XCUIApplication()
+        app.buttons["Get Started"].tap()
+        
+        let element = app.otherElements.containing(.navigationBar, identifier:"t5.View").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        let incrementButton = element.children(matching: .stepper).element(boundBy: 0).buttons["Increment"]
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        element.children(matching: .textField).element.tap()
+        app.pickerWheels["2"].press(forDuration: 1.9);
+        element.children(matching: .stepper).element(boundBy: 1).buttons["Increment"].tap()
+        app.buttons["GO"].tap()
+        app.navigationBars["Rounds"].buttons["Save"].tap()
+        
+        let okButton = app.alerts["Save"].buttons["OK"]
+        okButton.tap()
+        okButton.tap()
+        
+    }
+    
+    func testLoadSaveFile(){
+        
+        let app = XCUIApplication()
+        app.buttons["Get Started"].tap()
+        let element = app.otherElements.containing(.navigationBar, identifier:"t5.View").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        let incrementButton = element.children(matching: .stepper).element(boundBy: 0).buttons["Increment"]
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        incrementButton.tap()
+        element.children(matching: .textField).element.tap()
+        app.pickerWheels["2"].press(forDuration: 2.9);
+        app.buttons["GO"].tap()
+        app.navigationBars["Rounds"].buttons["Save"].tap()
+        app.alerts["Save"].collectionViews.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).children(matching: .textField).element.typeText("temp save")
+        app.tables.staticTexts["temp save"].tap()
+        
+    }
+    
+        
 }

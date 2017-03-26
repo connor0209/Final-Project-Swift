@@ -23,10 +23,10 @@ class t5Tests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        numPlayers = 9
-        rounds = 4;
+        numPlayers = 21
+        rounds = 10
         groupSize = 3
-        numGroups = 3
+        numGroups = 7
         mTwo = 0
         mThree = 0
         mFour = 0

@@ -45,6 +45,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func roundStepper(_ sender: UIStepper) {
          rounds.text = Int(sender.value).description
     }
+    
     @IBAction func twoStepper(_ sender: UIStepper) {
         sizeTwo.text = Int(sender.value).description
     }
@@ -52,6 +53,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func threeStepper(_ sender: UIStepper) {
         sizeThree.text = Int(sender.value).description
     }
+    
     @IBAction func prioInfo(_ sender: Any) {
         let refreshAlert = UIAlertController(title: "Help", message: "Having this option selected prioritises groupings where every player will try to be grouped with every other player at least once. Having this option turned off promotes a more balanced solution in some instances. Please note, this may not always affect the outcome. ", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -60,9 +62,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         present(refreshAlert, animated: true, completion: nil)
 
     }
+    
     @IBAction func fourStepper(_ sender: UIStepper) {
         sizeFour.text = Int(sender.value).description
     }
+    
     @IBAction func PLSStepper(_ sender: UIStepper) {
         testPLS.text = Int(sender.value).description
         names = [String]()
@@ -149,7 +153,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             statsTable.append(temp2)
         }
-        print(statsTable)
+        //////////////////////////////////////////////////////////////
+        var count = 0
+        for i in 0..<statsTable.count{
+            let temp = statsTable[i].reduce(0) { $1 == "0" ? $0 + 1 : $0 }
+            count = count + temp
+        }
+        print("differences")
+        print(count)
+        
         for i in 0..<groups.count{
             var temp:String = ""
             var t = groups[i]

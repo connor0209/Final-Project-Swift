@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import MessageUI
 
-class LoadTableViewController: UITableViewController {
+class LoadTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak var emailButton: UIBarButtonItem!
     //MARK: Properties
     
     var round = [String]()
     var stats = [[String]]()
     var cellImages = [UIImage]()
-    var pNames = [String]() // DOES NOTHING ATM
+    var pNames = [String]()
     var saveName:String?
+    var emailArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,9 @@ class LoadTableViewController: UITableViewController {
         print(stats)
     }
     
+    @IBAction func email(_ sender: Any) {
+        sendEmail()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,6 +80,34 @@ class LoadTableViewController: UITableViewController {
         return cell
     }
     
+    func sendEmail() {
+        createArrayForEmail()
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setMessageBody("<b>Your generated groupings are attatched.</b>", isHTML: true)
+            let joinedString = emailArray.joined(separator: "\n")
+            
+            if let data = (joinedString as NSString).data(using: String.Encoding.utf8.rawValue){
+                //Attach File
+                mail.addAttachmentData(data, mimeType: "text/plain", fileName: "Groups")
+            }
+            present(mail, animated: true)
+        } else {
+            print("Device cannot send email")
+        }
+    }
+    
+    func createArrayForEmail(){
+        emailArray.removeAll()
+        for i in 0..<round.count{
+            let temp1 = round[i]
+            let temp2 = "Groupings for round " + String(i+1) + ":\n\n"
+            let finalString = temp2 + "\n" + temp1
+            emailArray.append(finalString)
+        }
+    }
+
     
     /*
      // Override to support conditional editing of the table view.

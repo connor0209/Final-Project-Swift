@@ -71,10 +71,8 @@ class t5UITests: XCTestCase {
     }
     
     func testSaveFileWithNoName(){
-        
         let app = XCUIApplication()
         app.buttons["Get Started"].tap()
-        
         let element = app.otherElements.containing(.navigationBar, identifier:"t5.View").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
         let incrementButton = element.children(matching: .stepper).element(boundBy: 0).buttons["Increment"]
         incrementButton.tap()
@@ -88,15 +86,13 @@ class t5UITests: XCTestCase {
         element.children(matching: .stepper).element(boundBy: 1).buttons["Increment"].tap()
         app.buttons["GO"].tap()
         app.navigationBars["Rounds"].buttons["Save"].tap()
-        
         let okButton = app.alerts["Save"].buttons["OK"]
         okButton.tap()
         okButton.tap()
         
     }
     
-    func testLoadSaveFile(){
-        
+    func testLoadSaveFile(){        
         let app = XCUIApplication()
         app.buttons["Get Started"].tap()
         let element = app.otherElements.containing(.navigationBar, identifier:"t5.View").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element

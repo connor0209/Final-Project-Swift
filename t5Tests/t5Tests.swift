@@ -65,8 +65,6 @@ class t5Tests: XCTestCase {
         self.measure {
             let search = Search()
             let group = search.search(numPlayer: self.numPlayers, rounds: self.rounds, groupSize: self.groupSize, numGroups: self.numGroups, mTwo: self.mTwo, mThree: self.mThree, mFour: self.mFour, prio: self.prio)
-
-
             
         }
     }

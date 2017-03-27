@@ -13,7 +13,7 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
     var statsArray = [[String]]()
     var tableArray = [[String]]()
     var names = [String]()
-    let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
+    let reuseIdentifier = "cell"
 
 
     @IBOutlet weak var statsTable: UICollectionView!
@@ -53,14 +53,10 @@ class StatsViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     // tell the collection view how many cells to make
     func numberOfSections(in collectionView: UICollectionView) -> Int{
-        print("this")
-        print(tableArray.count)
         return tableArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("that")
-        print(tableArray[section].count)
          return tableArray[section].count
     }
     

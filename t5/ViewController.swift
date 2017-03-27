@@ -124,63 +124,51 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             present(refreshAlert, animated: true, completion: nil)
             
         }
-       
-        /*if(a! > 15 || d! > 6 && warning == false){
-            let refreshAlert = UIAlertController(title: "Warning!", message: "Larger amounts of players or rounds will increse the time taken to find a solution. ", preferredStyle: UIAlertControllerStyle.alert)
-            
-            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                
-            }))
-            present(refreshAlert, animated: true, completion: nil)
-        }*/
-        
-        var run = Search();
-        var groups = run.search(numPlayer: a!, rounds: d!, groupSize: h, numGroups: i!, mTwo:e!, mThree:f!, mFour:g!,prio:priority );
-        print(names)
-       var finalPlayers = run.getFinalPlayers()
-        for i in 0..<finalPlayers.count{
-            var temp2 = [String]()
-            for j in 0..<finalPlayers.count{
-                let a = finalPlayers[i].getPlayedPlayers()
-                
-                var temp = 0
-                for k in 0..<a.count  {
-                    if(a[k] == String(j+1)){
-                        temp += 1
-                    }
-                }
-                temp2.append(String(temp))
+        if(warning == false){
+            if(a! > 15 || d! > 6){
+                checkInputs(a:a!,d:d!)
             }
-            statsTable.append(temp2)
         }
-        //////////////////////////////////////////////////////////////
-        var count = 0
-        for i in 0..<statsTable.count{
-            let temp = statsTable[i].reduce(0) { $1 == "0" ? $0 + 1 : $0 }
-            count = count + temp
-        }
-        print("differences")
-        print(count)
-        
-        for i in 0..<groups.count{
-            var temp:String = ""
-            var t = groups[i]
-            for j in 0..<t.count{
-                temp += "Group " + String(j+1) + ":" + "\n"
-                temp += "\t" + names[t[j].getPlayerOne().getPlayerNo() - 1] + "\n "
-                temp += "\t" + names[t[j].getPlayerTwo().getPlayerNo() - 1]
-                let three = t[j].getPlayerThree().getPlayerNo()
-                if(three != 0){
-                   temp += "\n " + "\t" + names[t[j].getPlayerThree().getPlayerNo() - 1]
-                }
-                let four = t[j].getPlayerFour().getPlayerNo()
-                if(four != 0){
-                    temp += "\n " + "\t" +   names[t[j].getPlayerFour().getPlayerNo() - 1]
-                }
-                temp += "\n\n"
+        else{
+            var run = Search();
+            var groups = run.search(numPlayer: a!, rounds: d!, groupSize: h, numGroups: i!, mTwo:e!, mThree:f!, mFour:g!,prio:priority );
 
+            var finalPlayers = run.getFinalPlayers()
+            for i in 0..<finalPlayers.count{
+                var temp2 = [String]()
+                for j in 0..<finalPlayers.count{
+                    let a = finalPlayers[i].getPlayedPlayers()
+                    var temp = 0
+                    for k in 0..<a.count  {
+                        if(a[k] == String(j+1)){
+                            temp += 1
+                        }
+                    }
+                    temp2.append(String(temp))
+                }
+                statsTable.append(temp2)
             }
-            results.append(temp);
+        
+            for i in 0..<groups.count{
+                var temp:String = ""
+                var t = groups[i]
+                for j in 0..<t.count{
+                    temp += "Group " + String(j+1) + ":" + "\n"
+                    temp += "\t" + names[t[j].getPlayerOne().getPlayerNo() - 1] + "\n "
+                    temp += "\t" + names[t[j].getPlayerTwo().getPlayerNo() - 1]
+                    let three = t[j].getPlayerThree().getPlayerNo()
+                    if(three != 0){
+                        temp += "\n " + "\t" + names[t[j].getPlayerThree().getPlayerNo() - 1]
+                    }
+                    let four = t[j].getPlayerFour().getPlayerNo()
+                    if(four != 0){
+                        temp += "\n " + "\t" +   names[t[j].getPlayerFour().getPlayerNo() - 1]
+                    }
+                    temp += "\n\n"
+                    
+                }
+                results.append(temp);
+            }
         }
 
     }
@@ -336,6 +324,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         else{
             priority = false
+        }
+    }
+    
+    func checkInputs(a:Int, d:Int){
+        if(warning == false){
+            let refreshAlert = UIAlertController(title: "Warning", message: "A high number of players and/or rounds will cause the creation of groupings to take longer. Please be patient.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                self.warning = true
+            }))
+            present(refreshAlert, animated: true, completion: nil)
+    
+
         }
     }
 }

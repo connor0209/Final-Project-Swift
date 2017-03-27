@@ -78,9 +78,6 @@ class SavesTableViewController: UITableViewController {
     }
     
     func saveFile(){
-        //fileNames.removeAll()
-        //saveFiles.removeAll()
-        print("SAVING")
         let array1 = fileNames
         let defaults1 = UserDefaults.standard
         defaults1.set(array1, forKey: "SavedStringArray")
@@ -93,15 +90,12 @@ class SavesTableViewController: UITableViewController {
         let array4 = saveNames
         let defaults4 = UserDefaults.standard
         defaults4.set(array4, forKey: "SavedNamesArray")
-
-
         isSave = 0;
         self.tableView.reloadData()
  
     }
     
     func loadFile(){
-        print("LoadING")
         
         let defaults1 = UserDefaults.standard
         let array1 = defaults1.array(forKey: "SavedStringArray")  as? [String] ?? [String]()
@@ -158,17 +152,6 @@ class SavesTableViewController: UITableViewController {
         return cell
     }
 
-    /*override  func tableView(_ tableView: UITableView, didSelectRowAt
-        indexPath: IndexPath){
-        tableView.deselectRow(at: indexPath, animated: true)
-        NSLog("You selected cell number: \(indexPath.row)!")
-        // get text in label nameLabel
-        let cell = tableView.cellForRow(at: indexPath) as! SaveFileTableViewCell
-        
-        // here is the text of the label
-        selectedCell = cell.saveLabel.text!
-        print(selectedCell)
-    }*/
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -183,13 +166,6 @@ class SavesTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -219,7 +195,4 @@ class SavesTableViewController: UITableViewController {
         }
     }
     
-    func test(){
-        print("we are here")
-    }
 }

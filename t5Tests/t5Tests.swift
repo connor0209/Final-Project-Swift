@@ -23,10 +23,10 @@ class t5Tests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        numPlayers = 21
-        rounds = 10
+        numPlayers = 9
+        rounds = 3
         groupSize = 3
-        numGroups = 7
+        numGroups = 3
         mTwo = 0
         mThree = 0
         mFour = 0
@@ -58,6 +58,16 @@ class t5Tests: XCTestCase {
         let group = search.search(numPlayer: numPlayers, rounds: rounds, groupSize: groupSize, numGroups: numGroups, mTwo: mTwo, mThree: mThree, mFour: mFour, prio: prio)
         XCTAssertTrue(group[0].count == 3)
     }
+    
+    func testCorrectPlayersPerGroup() {
+        let search = Search()
+        let group = search.search(numPlayer: numPlayers, rounds: rounds, groupSize: groupSize, numGroups: numGroups, mTwo: mTwo, mThree: mThree, mFour: mFour, prio: prio)
+        var temp = group[0]
+        let p4 = temp[0].getPlayerFour()
+        XCTAssertTrue(p4.getPlayerNo() == 0)
+    }
+
+    
 
     
     func testSearchPerformance() {
